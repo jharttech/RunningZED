@@ -79,7 +79,7 @@ function Player:init(map)
         self.state = 'jumping'
         self.animation = self.animations['jumping']
         self.sounds['jump']:play()
-      elseif love.keyboard.isDown('left') then
+      elseif love.keyboard.isDown('left') and self.x > 0 then
         --self.dx = -MOVE_SPEED
         self.state = 'walking'
         --self.animation = self.animations['walking']
@@ -100,7 +100,7 @@ function Player:init(map)
         self.state = 'jumping'
         self.animation = self.animations['jumping']
         self.sounds['jump']:play()
-      elseif love.keyboard.isDown('left') and self.flagGrabbed == false then
+      elseif love.keyboard.isDown('left') and self.flagGrabbed == false and self.x > 0 then
         if love.keyboard.wasPressed('space') then
           self.dy = -JUMP_VELOCITY
           self.state = 'jumping'
@@ -134,7 +134,7 @@ function Player:init(map)
       end
     end,
     ['jumping'] = function(dt)
-      if love.keyboard.isDown('left') and self.flagGrabbed == false then
+      if love.keyboard.isDown('left') and self.flagGrabbed == false and self.x > 0 then
         self.direction = 'left'
         self.dx = -MOVE_SPEED -20
         self:checkLeftCollision()
